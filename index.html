@@ -223,10 +223,25 @@ margin:auto;
     background-color: #3a3a3a;
     z-index: 33331;
 }
+
+#idaudio{
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    width: 25%;
+
+margin:auto;
+    background-color: #3a3a3a;
+    z-index: -33331;
+}
         </style>
     </head>
 <body>
-
+    <audio id="idaudio" controls>
+        <source src="i.ogg" type="audio/ogg">
+    
+      Your browser does not support the audio element.
+      </audio>
 
  <!--    <div id="idmenu"> 
         
@@ -433,9 +448,17 @@ video.play();
 
 
 setTimeout(function(){
+    document.getElementById("idaudio").play(); 
     $("#idvideo").remove();
-},60000)
+},6000);
 </script>
+
+<script>
+
+
+</script>
+
+
 
 </body>
 </html>
