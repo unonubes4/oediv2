@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="jquery.js"></script>
+        
+
+        <!-- Babylon.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+        <script src="https://preview.babylonjs.com/ammo.js"></script>
+        <script src="https://preview.babylonjs.com/cannon.js"></script>
+        <script src="https://preview.babylonjs.com/Oimo.js"></script>
+        <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+        <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+        <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+        <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+        <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+        <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+        <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+
+        <style>
+
+#idvideo{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+
+
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+                z-index: -1;
+            }
+            #idmenu{
+                position: absolute;
+                top: 0%;
+                left: 0%;
+                width: 50%;
+                height: 45px;
+                display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+
+            }
+            .classb{
+                font-size: 16px;
+                width: 155px;
+                height: 45px;
+         
+                background-color: rgba(106, 207, 153, 0.253); 
+               color: black;
+               
+               -webkit-border-radius: 12px;
+-moz-border-radius: 12px;
+border-radius: 12px;
+
+                
+            }
+            .classb:hover{
+        
+               
+               background-color: rgb(106, 207, 153); 
+            }
+            #idp1{
+                position: absolute;
+                bottom: 10%;
+                left: 0%;
+                height: 120px;
+                width: 288px;
+                z-index: 7;
+                background-color: rgba(0, 0, 0, 0.609);
+                text-align: center;
+                font-size: 22px;
+                color: rgb(220, 224, 228);
+            }
+            #idpm{
+                background-color: rgba(0, 0, 0, 0.609);
+                text-align: center;
+                font-size: 33px;
+                color: rgb(220, 224, 228);
+            } 
+
+            
+
+            #menu {
+	background: #0099CC;
+	color: #FFF;
+	height: 45px;
+	padding-left: 18px;
+	border-radius: 10px;
+    z-index: 7;
+}
+#menu ul, #menu li {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none
+}
+#menu ul {
+	width: 100%;
+}
+#menu li {
+	float: left;
+	display: inline;
+	position: relative;
+}
+#menu a {
+	display: block;
+	line-height: 45px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+#menu a.dropdown-arrow:after {
+	content: "\25BE";
+	margin-left: 5px;
+}
+#menu li a:hover {
+	color: #0099CC;
+	background: #F2F2F2;
+}
+#menu input {
+	display: none;
+	margin: 0;
+	padding: 0;
+	height: 45px;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer
+}
+#menu label {
+	display: none;
+	line-height: 45px;
+	text-align: center;
+	position: absolute;
+	left: 35px
+}
+#menu label:before {
+	font-size: 1.6em;
+	content: "\2261"; 
+	margin-left: 20px;
+}
+#menu ul.sub-menus{
+	height: auto;
+	overflow: hidden;
+	width: 170px;
+	background: #444444;
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+#menu ul.sub-menus li {
+	display: block;
+	width: 100%;
+}
+#menu ul.sub-menus a {
+	color: #FFFFFF;
+	font-size: 16px;
+}
+#menu li:hover ul.sub-menus {
+	display: block
+}
+#menu ul.sub-menus a:hover{
+	background: #F2F2F2;
+	color: #444444;
+}
+@media screen and (max-width: 800px){
+	#menu {position:relative}
+	#menu ul {background:#111;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none}
+	#menu ul.sub-menus {width:100%;position:static;}
+	#menu ul.sub-menus a {padding-left:30px;}
+	#menu li {display:block;float:none;width:auto;}
+	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
+	#menu input {z-index:4}
+	#menu input:checked + label {color:white}
+	#menu input:checked + label:before {content:"\00d7"}
+	#menu input:checked ~ ul {display:block}
+}
+
+
+#idacamenu{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    z-index: 3333;
+}
+            
+#idcarga{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #3a3a3a;
+    z-index: 33331;
+}
+#idimg{
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 25%;
+    display:block;
+margin:auto;
+    background-color: #3a3a3a;
+    z-index: 33331;
+}
+        </style>
+    </head>
+<body>
+
+
+ <!--    <div id="idmenu"> 
+        
+        <div class="classb">VOXELCOLOMBIA</div> <div class="classb">SOBRE NOSOTROS</div> <div class="classb">sss</div> <div class="classb">CONTACTAR</div> <div class="classb">sss</div>
+    </div>
+ -->
+    <div id="idp1">CONVIERTE EN UN PROFESIONAL <br> <div  id="idpm">Del arte digital <br> para los videos juegos</div></div>
+<!-- 
+<div id="idiframevide">
+
+
+    <iframe allow="autoplay; fullscreen" type="text/html" src="https://www.youtube-nocookie.com/embed/m8NzUvBvrdc?version=3&amp;enablejsapi=1&amp;html5=1&amp;hd=1&amp;wmode=opaque&amp;showinfo=0&amp;rel=0&amp;origin=https://online.voxelschool.com;&amp;controls=0&amp;playsinline=1" allowfullscreen="" width="100%" height="100%" class="intrinsic-ignore" style="opacity: 1; visibility: visible; width: 100%; height: 367.914%; max-height: none; max-width: none; position: absolute; left: 0px; top: -133.957%; display: block;" id="iframe80327" data-gtm-yt-inspected-1_19="true"></iframe>
+</div>
+ -->
+
+
+<div id="idcarga"><img id="idimg" src="http://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-043.gif" alt=""></div>
+
+<div id="idacamenu"> 
+ <nav id='menu'>
+    <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+    <ul>
+      <li><a href='http://'>Home</a></li>
+      <li><a class='dropdown-arrow' href='http://'>Products</a>
+        <ul class='sub-menus'>
+          <li><a href='http://'>Products Sub Menu 1</a></li>
+          <li><a href='http://'>Products Sub Menu 2</a></li>
+          <li><a href='http://'>Products Sub Menu 3</a></li>
+          <li><a href='http://'>Products Sub Menu 4</a></li>
+        </ul>
+      </li>
+      <li><a href='http://'>About</a></li>
+      <li><a class='dropdown-arrow' href='http://'>Services</a>
+        <ul class='sub-menus'>
+          <li><a href='http://'>Services Sub Menu 1</a></li>
+          <li><a href='http://'>Services Sub Menu 2</a></li>
+          <li><a href='http://'>Services Sub Menu 3</a></li>
+        </ul>
+      </li>
+      <li><a href='http://'>Contact Us</a></li>
+    </ul>
+  </nav>
+
+
+</div>
+    <canvas id="renderCanvas"></canvas>
+
+
+
+
+
+<script>
+
+/* function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '10px';
+  }
+}
+ */
+</script>
+
+
+    <script>
+        var canvas = document.getElementById("renderCanvas");
+
+        var startRenderLoop = function (engine, canvas) {
+            engine.runRenderLoop(function () {
+                if (sceneToRender && sceneToRender.activeCamera) {
+                    sceneToRender.render();
+                }
+            });
+        }
+
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
+        var createScene = function () {
+        
+       // Create a scene.
+    var scene = new BABYLON.Scene(engine);
+
+// Create a default skybox with an environment.
+var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("./environment.dds", scene);
+var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
+
+// Append glTF model to scene.
+BABYLON.SceneLoader.Append("./", "a.glb", scene, function (scene) {
+    // Create a default arc rotate camera and light.
+    scene.createDefaultCameraOrLight(true, true, true);
+
+    // The default camera looks at the back of the asset.
+    // Rotate the camera by 180 degrees to the front of the asset.
+    scene.activeCamera.alpha += Math.PI;
+
+    setTimeout(function(){
+        document.getElementById("idcarga").style.display="none";
+       },1000);
+});
+
+
+
+            return scene;
+        
+        };
+                window.initFunction = async function() {
+                    
+                    
+                    var asyncEngineCreation = async function() {
+                        try {
+                        return createDefaultEngine();
+                        } catch(e) {
+                        console.log("the available createEngine function failed. Creating the default engine instead");
+                        return createDefaultEngine();
+                        }
+                    }
+
+                    window.engine = await asyncEngineCreation();
+       
+                    
+        if (!engine) throw 'engine should not be null.';
+        startRenderLoop(engine, canvas);
+        window.scene = createScene();};
+        initFunction().then(() => {sceneToRender = scene                    
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+
+
+
+
+function  cargarobj(st,camera) { 
+   /*  BABYLON.SceneLoader.Append("-/", "a.glb", scene, function (scene) {
+        // Create a default arc rotate camera and light.
+        scene.createDefaultCameraOrLight(true, true, true);
+
+        // The default camera looks at the back of the asset.
+        // Rotate the camera by 180 degrees to the front of the asset.
+        scene.activeCamera.alpha += Math.PI;
+    }); */
+
+    BABYLON.SceneLoader.ImportMesh("", "./", "a.glb", scene, function (newMeshes) {
+        // Set the target of the camera to the first imported mesh
+       camera.target = newMeshes[0];
+
+     
+    
+    });
+
+
+ }
+
+
+
+ function loadvideo(){
+
+ }
+
+    </script>
+
+
+         
+<video id="idvideo"controls controlsList="nodownload">
+    <source src="https://unonubes4.github.io/oediv2/Untitled Project44.mp4" type="video/mp4">
+  
+    
+    Your browser does not support the video tag.
+  </video>
+    
+
+
+
+<script>
+
+
+window.onload=function(){
+
+
+var video=document.getElementById("idvideo");
+ video.oncanplay = function () {
+setTimeout(function (param) {     console.log(video.duration);  },3000);
+
+video.onended = function() {
+alert("The audio has ended");
+video. src="https://www.w3schools.com/html/mov_bbb.mp4";
+video.play();
+
+};
+/*     var duration = video.duration;
+    var hour = parseInt(duration / 3600);
+    var minute = parseInt(duration % 3600 / 60);
+    var sec = parseInt(duration % 60);
+    document.getElementById("idp").innerHTML="La duración del video es:" + duración + "" + hora + ":" + minuto + ":" + seg;
+*/  }
+}
+
+
+setTimeout(function(){
+    $("#idvideo").remove();
+},7000)
+</script>
+
+</body>
+</html>
