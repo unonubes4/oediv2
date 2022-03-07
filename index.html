@@ -412,7 +412,9 @@ window.onload=function(){
 
 
 var video=document.getElementById("idvideo");
+
  video.oncanplay = function () {
+    video.play();
 setTimeout(function (param) {     console.log(video.duration);  },3000);
 
 video.onended = function() {
