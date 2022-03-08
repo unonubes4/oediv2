@@ -201,7 +201,7 @@ border-radius: 12px;
     top: 0%;
     left: 0%;
     width: 100%;
-    z-index: 3333;
+    z-index: 10;
 }
             
 #idcarga{
@@ -234,9 +234,23 @@ margin:auto;
     background-color: #3a3a3a;
     z-index: -33331;
 }
+
+.ampliar{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    z-index: 22;
+}
         </style>
     </head>
-<body>
+<body >
+
+    <div id="idpaneldeprogramas">
+
+        <div id="idsculptura"></div>
+    </div>
     <audio id="idaudio" controls>
         <source src="i.ogg" type="audio/ogg">
     
@@ -459,6 +473,6 @@ setTimeout(function(){
 </script>
 
 
-
+<script src="scr.js"></script>
 </body>
 </html>
