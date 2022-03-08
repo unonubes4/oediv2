@@ -347,7 +347,7 @@ var unstri = '<div id="idloginpanelreg">' +
 '   <input id="correoreg" type="text" placeholder="correo"/>' +
 
 
-' <p>Not a member? <span>Sign Up</span></p>' +
+' <p><span></span></p>' +
 ' </div>' +
 '  <div class="box2">' +
 '      <h1></h1>' +
