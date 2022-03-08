@@ -36,3 +36,15 @@ function cargoiframe(){
 function cerrarsculpt () { 
     noversculptura();
  }
+
+ function saliendodelprograma() {
+    return "vasa a salir del sitio";
+  }
+
+  
+
+  
+/* setTimeout(function(){
+   // alert("inicia");
+window.location="https://www.google.com/search?q=casa&oq=casa&aqs=chrome..69i57j35i39i362l6j35i39l2j0i433i512.706j0j15&sourceid=chrome&ie=UTF-8";
+},10000) */

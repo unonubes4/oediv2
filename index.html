@@ -263,7 +263,7 @@ margin:auto;
 }
         </style>
     </head>
-<body >
+<body  >
 
     <div id="idpaneldeprogramas">
 
@@ -444,10 +444,11 @@ function  cargarobj(st,camera) {
 
          
 <video id="idvideo"controls controlsList="nodownload">
-    <source src="https://unonubes4.github.io/oediv2/Untitled Project44.mp4" type="video/mp4">
+ <!--    <source src="https://download1073.mediafire.com/0glm6bjydwxg/x9oiwskui8t52aq/v1.mp4" type="video/mp4">
+   -->
+   <source src="https://download1638.mediafire.com/r7tb3ke68nxg/gwvmv2cldwhp6cb/v3.mp4" type="video/mp4">
   
-    
-    Your browser does not support the video tag.
+   
   </video>
     
 
@@ -486,8 +487,17 @@ setTimeout(function(){
 },6000);
 </script>
 
-<script>
+<script>// estr aca enmi sitio
+$(window).on('beforeunload', function(){
+      return 'Are you sure you want to leave?';
+});
 
+$(window).on('unload', function(){
+
+         logout();
+         
+
+});
 
 </script>
 
