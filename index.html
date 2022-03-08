@@ -243,6 +243,23 @@ margin:auto;
     width: 100%;
     z-index: 22;
 }
+
+#idbtcerrarsculp{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 55px;
+    width: 55px;
+  
+    background-color: #0099cc78;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 26;
+
+}
+#idbtcerrarsculp:hover{
+    background-color: #0099cc;  
+}
         </style>
     </head>
 <body >
@@ -278,21 +295,21 @@ margin:auto;
  <nav id='menu'>
     <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
     <ul>
-      <li><a href='http://'>Home</a></li>
-      <li><a class='dropdown-arrow' href='http://'>Products</a>
+      <li><a >VoxelColombia</a></li>
+      <li><a class='dropdown-arrow' href=>Products</a>
         <ul class='sub-menus'>
-          <li><a href='http://'>Products Sub Menu 1</a></li>
-          <li><a href='http://'>Products Sub Menu 2</a></li>
-          <li><a href='http://'>Products Sub Menu 3</a></li>
-          <li><a href='http://'>Products Sub Menu 4</a></li>
+          <li><a >Products Sub Menu 1</a></li>
+          <li><a >Products Sub Menu 2</a></li>
+          <li><a >Products Sub Menu 3</a></li>
+          <li><a >Products Sub Menu 4</a></li>
         </ul>
       </li>
-      <li><a href='http://'>About</a></li>
-      <li><a class='dropdown-arrow' href='http://'>Services</a>
+      <li><a >Acerca</a></li>
+      <li><a class='dropdown-arrow' >Servicios gratis</a>
         <ul class='sub-menus'>
-          <li><a href='http://'>Services Sub Menu 1</a></li>
-          <li><a href='http://'>Services Sub Menu 2</a></li>
-          <li><a href='http://'>Services Sub Menu 3</a></li>
+          <li><a onclick="versculptura();" >programa sculptura </a></li>
+         
+          
         </ul>
       </li>
       <li><a href='http://'>Contact Us</a></li>
@@ -301,6 +318,7 @@ margin:auto;
 
 
 </div>
+
     <canvas id="renderCanvas"></canvas>
 
 

@@ -8,6 +8,10 @@ function versculptura(){
 
    $("#idsculptura").append(irfra);
    $("#idyoirame").addClass("ampliar");
+
+   var bt='<button id="idbtcerrarsculp" onclick="cerrarsculpt();">cerrar</button>';
+   $("body").append(bt);
+
 }
 function noversculptura(){
     $("#idyoirame").removeClass("ampliar");
@@ -16,6 +20,7 @@ function noversculptura(){
     $("#idsculptura").removeClass("ampliar");
 
     $("#idsculptura").remove();
+    $("#idbtcerrarsculp").remove();
 
     
 }
@@ -26,5 +31,9 @@ function cargoiframe(){
 }
 
 setTimeout(function(){versculptura();
-    setTimeout(function(){noversculptura();},5000)
+   // setTimeout(function(){noversculptura();},5000)
 },9000)
+
+function cerrarsculpt () { 
+    noversculptura();
+ }
