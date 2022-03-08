@@ -318,7 +318,7 @@ margin:auto;
       <li><a >VoxelColombia</a></li>
       <li><a class='dropdown-arrow'>Products</a>
         <ul class='sub-menus'>
-            <li><a >Products Sub Menu 1</a></li>
+            <li><a onclick="vervideo()" >ver video</a></li>
          <!--  <li><a >Products Sub Menu 1</a></li>
           <li><a >Products Sub Menu 2</a></li>
           <li><a >Products Sub Menu 3</a></li>
@@ -463,27 +463,62 @@ function  cargarobj(st,camera) {
 
 
          
-<video id="idvideo"controls controlsList="nodownload">
+<!-- <video id="idvideo"controls controlsList="nodownload"> -->
  <!--    <source src="https://download1073.mediafire.com/0glm6bjydwxg/x9oiwskui8t52aq/v1.mp4" type="video/mp4">
    -->
-   <source src="https://download1638.mediafire.com/r7tb3ke68nxg/gwvmv2cldwhp6cb/v3.mp4" type="video/mp4">
+ <!--   <source src="https://download1638.mediafire.com/r7tb3ke68nxg/gwvmv2cldwhp6cb/v3.mp4" type="video/mp4">
   
    
   </video>
-    
+     -->
 
 
 
 <script>
 
+function vervideo(){
 
-window.onload=function(){
+    /* <source src="https://download1073.mediafire.com/0glm6bjydwxg/x9oiwskui8t52aq/v1.mp4" type="video/mp4">
+    */
+    var strvdieo='<video onended="sefueel()" onload="cargovideov();"  id="idvideo"controls controlsList="nodownload">'+' <source src="https://download1638.mediafire.com/r7tb3ke68nxg/gwvmv2cldwhp6cb/v3.mp4" type="video/mp4">'+
+  '  </video>';
+    
 
 
-var video=document.getElementById("idvideo");
+    $("body").append(strvdieo);
+setTimeout(function(){
+    cargovideov();
+},2000);
+    
+
+    
+
+}
+var video=null;
+
+function cargovideov(){
+
+     video=document.getElementById("idvideo");
+
+    
+elvideo();
+/* video.onended = function() {
+  alert("The audio has ended");
+}; */
+}
+
+function sefueel(){
+    $("#idvideo").remove(); 
+}
+function elvideo(){
+
+
 
  video.oncanplay = function () {
+    
     video.play();
+  //  $("#idvideo").remove();
+/*     video.play();
 setTimeout(function (param) {     console.log(video.duration);  },3000);
 
 video.onended = function() {
@@ -491,7 +526,7 @@ alert("The audio has ended");
 video. src="https://www.w3schools.com/html/mov_bbb.mp4";
 video.play();
 
-};
+}; */
 /*     var duration = video.duration;
     var hour = parseInt(duration / 3600);
     var minute = parseInt(duration % 3600 / 60);
@@ -499,12 +534,14 @@ video.play();
     document.getElementById("idp").innerHTML="La duración del video es:" + duración + "" + hora + ":" + minuto + ":" + seg;
 */  }
 }
+window.onload=function(){
+    document.getElementById("idaudio").play();  
+}
 
-
-setTimeout(function(){
+/* setTimeout(function(){
     document.getElementById("idaudio").play(); 
     $("#idvideo").remove();
-},6000);
+},6000); */
 </script>
 
 <script>// estr aca enmi sitio
