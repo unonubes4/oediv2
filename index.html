@@ -6,7 +6,7 @@
 
 <script src="jquery.js"></script>
         
-
+<link rel="stylesheet" href="logincss.css">
         <!-- Babylon.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
         <script src="https://preview.babylonjs.com/ammo.js"></script>
@@ -21,6 +21,25 @@
         <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
         <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
         <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+
+      <!--   <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+ -->
+      <!--   <script type="module">
+     
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+  
+             -->
+            
+             
+     <!--      </script> -->
+
+
+
+
+
+<script src="mifire.js"></script>
+
 
         <style>
 
@@ -247,12 +266,12 @@ margin:auto;
 
 #idbtcerrarsculp{
     position: absolute;
-    top: 0%;
-    left: 0%;
+    top: 8%;
+    left: 2%;
     height: 55px;
     width: 55px;
   
-    background-color: #0099cc78;
+    background-color: #0099ccd2;
     border-radius: 50%;
     text-align: center;
     z-index: 26;
@@ -297,18 +316,19 @@ margin:auto;
     <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
     <ul>
       <li><a >VoxelColombia</a></li>
-      <li><a class='dropdown-arrow' href=>Products</a>
+      <li><a class='dropdown-arrow'>Products</a>
         <ul class='sub-menus'>
-          <li><a >Products Sub Menu 1</a></li>
+            <li><a >Products Sub Menu 1</a></li>
+         <!--  <li><a >Products Sub Menu 1</a></li>
           <li><a >Products Sub Menu 2</a></li>
           <li><a >Products Sub Menu 3</a></li>
-          <li><a >Products Sub Menu 4</a></li>
+          <li><a >Products Sub Menu 4</a></li> -->
         </ul>
       </li>
-      <li><a >Acerca</a></li>
+      <li><a id="idregistropanel" onclick="verregistro();" >Registrar</a></li>
       <li><a class='dropdown-arrow' >Servicios gratis</a>
         <ul class='sub-menus'>
-          <li><a onclick="versculptura();" >programa sculptura </a></li>
+          <li><a id="idpanelscultura" onclick="aquienllamomiaplicaci(this);" >programa sculptura </a></li>
          
           
         </ul>
@@ -503,5 +523,54 @@ $(window).on('unload', function(){
 
 
 <script src="scr.js"></script>
+
+
+
+
+<!-- 
+
+
+<div id="idloginpanelreg">
+
+    <div class="vid-container maximo">
+        <video class="bgvid maximo" autoplay="autoplay" muted="muted" preload="auto" loop>
+            <source src="https://mazwai.com/videvo_files/video/free/2015-09/small_watermarked/postcard_from_big_sur_preview.webm" type="video/webm">
+        </video>
+        <div class="inner-container maximo">
+       
+            
+          <br>
+          <div id="divloginpaparent">
+
+            <div class="box">
+                <h1>Registro</h1>
+                <input id="nombrereg" type="text" placeholder="nombre"/>
+                <input id="papellido"  type="text" placeholder="primer apellido"/>
+                <input id="dosapellido"  type="text" placeholder="segundo apellido"/>
+                <input id="correoreg" type="text" placeholder="correo"/>
+  
+                
+                <p>Not a member? <span>Sign Up</span></p>
+              </div>
+              <div class="box2">
+                <h1></h1>
+                <input id="celular" type="text" placeholder="celular"/>
+                <input id="usuarioreg" type="text" placeholder="usuario"/>
+                <input id="clavereg" type="text" placeholder="clave"/>
+                <input  id="cedulareg" type="text" placeholder="cedula"/>
+                <button onclick="registrarn();">registrar</button>
+           
+                
+              </div>
+          </div>
+        
+        </div>
+      </div>
+
+
+</div>
+
+ -->
+
 </body>
 </html>
