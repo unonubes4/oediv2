@@ -4,13 +4,12 @@ function versculptura(){
     $("body").append(addm);
     $("#idsculptura").addClass("ampliar");
 
-   var irfra=' <iframe id="idyoirame" onload="cargoiframe" src="https://stephaneginier.com/sculptgl/" title=""></iframe>'
+   var irfra=' <iframe id="idyoirame" onload="cargoiframe()" src="https://stephaneginier.com/sculptgl/" title=""></iframe>'
 
    $("#idsculptura").append(irfra);
    $("#idyoirame").addClass("ampliar");
 
-   var bt='<button id="idbtcerrarsculp" onclick="cerrarsculpt();">cerrar</button>';
-   $("body").append(bt);
+
 
 }
 function noversculptura(){
@@ -27,12 +26,12 @@ function noversculptura(){
 
 
 function cargoiframe(){
-    alert("iframe cargo");
+    var bt='<button id="idbtcerrarsculp" onclick="cerrarsculpt();">cerrar</button>';
+    $("body").append(bt);
 }
 
-setTimeout(function(){versculptura();
-   // setTimeout(function(){noversculptura();},5000)
-},9000)
+
+
 
 function cerrarsculpt () { 
     noversculptura();
