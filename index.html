@@ -400,6 +400,99 @@ BABYLON.SceneLoader.Append("./", "a.glb", scene, function (scene) {
 
 
 
+
+
+
+
+
+
+
+
+  // Create & launch a particule system
+  var particleSystem = new BABYLON.ParticleSystem("spawnParticles", 3600, scene);    // 3600 particles to have a continue effect when computing circle positions
+            particleSystem.particleTexture = new BABYLON.Texture("textures/flare.png", scene);
+            particleSystem.color1 = new BABYLON.Color4(.9, .9, .95, 1.0);
+            particleSystem.color2 = new BABYLON.Color4(0.2, 0.2, .3, .5);
+            particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+            particleSystem.emitter = new BABYLON.Vector3(0, 20, 0);
+            particleSystem.minSize = 0.1;
+            particleSystem.maxSize = 0.5;
+            particleSystem.emitRate = 500;
+            particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;     // to manage alpha
+            particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+            //particleSystem.direction1 = new BABYLON.Vector3(-1, 1, -1);
+            //particleSystem.direction2 = new BABYLON.Vector3(1, 1, 1);
+            particleSystem.minEmitPower = -10;
+            particleSystem.maxEmitPower = -100;
+            //particleSystem.updateSpeed = 0.1;
+        
+            var radius = 15;
+        
+            // Custom function to get the circle effect
+            particleSystem.startPositionFunction = function(worldMatrix, positionToUpdate)
+            {
+                var rndAngle = 2 * Math.random() * Math.PI;
+                var randX = Math.random() *radius * Math.sin(rndAngle);
+                var randY = this.minEmitBox.y;
+                var randZ = Math.random() *radius * Math.cos(rndAngle);
+                
+                BABYLON.Vector3.TransformCoordinatesFromFloatsToRef(randX, randY, randZ, worldMatrix, positionToUpdate);
+            }
+            
+            var spriteManagerTrees = new BABYLON.SpriteManager("treesManager", "textures/palm.png", 200, 800, scene);
+            //var ray = new BABYLON.Ray(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero(), 0);
+            particleSystem.updateFunction = function(particles) {
+
+        for (var index = 0; index < particles.length; index++) {
+            var particle = particles[index];
+            particle.age += this._scaledUpdateSpeed;
+            if (particle.age >= particle.lifeTime) {
+                this.recycleParticle(particle);
+                index--;
+                continue;
+            }
+            else {
+                particle.colorStep.scaleToRef(this._scaledUpdateSpeed, this._scaledColorStep);
+                particle.color.addInPlace(this._scaledColorStep);
+                if (particle.color.a < 0)
+                    particle.color.a = 0;
+                particle.angle += particle.angularSpeed * this._scaledUpdateSpeed;
+                particle.direction.scaleToRef(this._scaledUpdateSpeed, this._scaledDirection);
+                particle.position.addInPlace(this._scaledDirection);
+                this.gravity.scaleToRef(this._scaledUpdateSpeed, this._scaledGravity);
+                particle.direction.addInPlace(this._scaledGravity);
+
+                // own code:
+                var ray = new BABYLON.Ray(particle.position, particle.direction, .5);
+                var hit = scene.pickWithRay(ray);
+                if (hit.pickedMesh && hit.pickedMesh.name === 'ground') {
+                    //console.log('ground hit')
+                    var tree = new BABYLON.Sprite("", spriteManagerTrees);
+                    tree.position = new BABYLON.Vector3(particle.position.x, particle.position.y - hit.distance, particle.position.z);
+                    setTimeout(() => { tree.dispose() }, 500);
+                    //var verticesData = ground.getVerticesData(BABYLON.VertexBuffer.PositionKind)
+                    //tree.position = verticesData[ground.getIndices()[hit.faceID * 3]]
+                }
+
+                /*ray.direction = particle.direction;
+                ray.origin = particle.position;
+                ray.length = .5;*/
+            }
+        }
+            };
+
+            // Start
+            particleSystem.start();
+
+
+
+
+
+
+
+
+
+
             return scene;
         
         };
@@ -480,7 +573,12 @@ function vervideo(){
 
     /* <source src="https://download1073.mediafire.com/0glm6bjydwxg/x9oiwskui8t52aq/v1.mp4" type="video/mp4">
     */
-    var strvdieo='<video onended="sefueel()" onload="cargovideov();"  id="idvideo"controls controlsList="nodownload">'+' <source src="https://download1638.mediafire.com/r7tb3ke68nxg/gwvmv2cldwhp6cb/v3.mp4" type="video/mp4">'+
+    var strvdieo='<video onended="sefueel()" onload="cargovideov();"'+
+    'id="idvideo"controls controlsList="nodownload">'+
+    '<source src='
+    +'"https://cdn-cf-east.streamable.com/video/mp4/bke2bg.mp4?Expires=1647495540&Signature=ZP08HmvSW1HTc-psmYuXFZQMkbKnUg4bqQ7gAkMHXDbR0jYNdcAr~KBaHIfu1DmPpqoPKHsuGk0jhj8hbSXMwc89xXegQNL01ulrcqkzhvgMe9PLxTW0TCp6KqdoVjhdiCCiY7QPjnHjNhlyWUs13UMiraTqWuG-9Ky2oQZBA0RI4J0gBlsKDCcPvjKWC9gB54z-uYTEJevvF738~BrTDmBbasJEKk9se9kvgZcNYjTMlh5YkaD2V4zDBkMlapQxbDR3i3xf5oWmJHR5PxUFKxLTAPehYNS5sVI1HqoQI1VKWPua9M0bKroQHa-87QXkS3us-XBG0zNIszvg8q8UZg__&Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ'+
+
+'" type="video/mp4">'+
   '  </video>';
     
 
